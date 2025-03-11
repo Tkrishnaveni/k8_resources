@@ -15,12 +15,12 @@ spec:
       app: frontend
       tier: web
       #Pod template
-  template:
-    metadata:
-      labels:
+template:
+  metadata:
+    labels:
         app: frontend
         tier: web
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:stable-perl      # nginx: tag  
+  spec:
+     containers:
+     - name: nginx
+       image: nginx:stable-perl      # nginx: tag  
