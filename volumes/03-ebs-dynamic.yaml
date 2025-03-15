@@ -4,8 +4,6 @@ metadata:
   name: ebs-dynamic
 spec:
   storageClassName: "ebs-sc" # Empty string must be explicitly set otherwise default StorageClass will be set
-  # PV name
-  volumeName: ebs-dynamic
   accessModes:
     - ReadWriteOnce
   resources:
