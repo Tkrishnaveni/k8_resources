@@ -8,7 +8,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 20Gi
+      storage: 19Gi
 ---
 apiVersion: v1
 kind: Pod
@@ -33,7 +33,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: nginx-lb
+  name: nginx-dynamic
 spec:
   type: LoadBalancer
   selector: # labels are used as selectors
