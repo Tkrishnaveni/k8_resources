@@ -1,0 +1,26 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: affinity
+  namespace: expense
+  labels:
+    purpose: "node affinity demo"
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: hardware
+            operator: In
+            values:
+            - gpu
+            
+  containers:
+  - name: nginx
+    image: nginx:latest      
+  tolerations:
+  - key: "hardware"
+    operator: Equal
+    value: "gpu"
+    effect: NoExecute 
