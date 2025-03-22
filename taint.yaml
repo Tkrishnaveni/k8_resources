@@ -4,6 +4,8 @@ metadata:
  name: taint
  namespace: expense
 spec:
- containers:
- - name: nginx 
-   image: nginx
+  nodeSelector:
+    topology.kubernetes.io/zone: us-east-1c
+  containers:
+  - name: nginx 
+    image: nginx:latest
