@@ -11,6 +11,6 @@ spec:
     image: nginx:latest
   tolerations:
   - key: "hardware"
-    operator: equal
+    operator: Equal
     value: "gpu"
     effect: NoExecute  
