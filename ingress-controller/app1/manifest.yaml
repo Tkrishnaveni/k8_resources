@@ -42,7 +42,7 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:463470982924:certificate/d6e6d506-3f9c-4739-88b1-7ec5eacfcebb
     alb.ingress.kubernetes.io/group.name: joindevops
 spec:
