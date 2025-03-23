@@ -1,0 +1,60 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:  
+  name: app1
+  #deployment labels
+  labels:
+    app-name: app1
+    
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app-name: app1
+  template: 
+    metadata:
+     labels:
+       app-name: app1
+       
+    spec:
+      containers:
+      - name: app1
+        image: joindevops/app1:1.0.0
+        ports:
+        - containerPort: 80   
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx
+spec:
+  selector: # labels are used as selectors
+    app-name: app1
+  ports:
+  - protocol: TCP
+    port: 80 # service port
+    targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app1
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:463470982924:certificate/6c32f5c6-1220-49d8-97a4-a74ca60474b9
+    alb.ingress.kubernetes.io/group.name: joindevops
+spec:
+  ingressClassName: alb
+  rules:
+  - host: "app1.kittudevops.shop"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: app1
+            port:
+              number: 80
